@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4361ee"/>
+      <stop offset="50%" stop-color="#7209b7"/>
+      <stop offset="100%" stop-color="#f72585"/>
+    </linearGradient>
+  </defs>
+  <!-- Speech bubble -->
+  <path d="M4 6a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H12l-5 4.5V24H8a4 4 0 0 1-4-4V6z" fill="url(#g)"/>
+  <!-- Form lines -->
+  <rect x="9" y="8" width="3" height="3" rx="0.5" fill="white" opacity="0.9"/>
+  <rect x="14" y="8.5" width="10" height="2" rx="1" fill="white" opacity="0.7"/>
+  <rect x="9" y="13" width="3" height="3" rx="0.5" fill="white" opacity="0.9"/>
+  <rect x="14" y="13.5" width="8" height="2" rx="1" fill="white" opacity="0.7"/>
+  <rect x="9" y="18" width="3" height="3" rx="0.5" fill="white" opacity="0.9"/>
+  <rect x="14" y="18.5" width="6" height="2" rx="1" fill="white" opacity="0.7"/>
+</svg>
