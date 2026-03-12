@@ -81,7 +81,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
     }
 
@@ -154,9 +154,89 @@
     }
 
     .formvo-logo {
-      width: 120px;
-      height: 120px;
-      filter: drop-shadow(0 0 30px rgba(67, 97, 238, 0.5)) drop-shadow(0 0 60px rgba(114, 9, 183, 0.2));
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 0 24px rgba(67, 97, 238, 0.45)) drop-shadow(0 0 48px rgba(114, 9, 183, 0.2));
+      animation: fadeUp 0.8s ease-out both, logoFloat 4s ease-in-out 1.5s infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ─── Chatbot comes alive ─── */
+
+    /* Eyes blink every 4s */
+    .eye-left, .eye-right {
+      animation: eyeBlink 4s ease-in-out 2s infinite;
+      transform-origin: center;
+    }
+    .eye-right { animation-delay: 2.1s; }
+
+    @keyframes eyeBlink {
+      0%, 90%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.1); }
+    }
+
+    /* Antenna ball pulses */
+    .antenna-ball {
+      animation: antennaPulse 2s ease-in-out 1.5s infinite;
+      transform-origin: center;
+    }
+
+    @keyframes antennaPulse {
+      0%, 100% { opacity: 1; filter: drop-shadow(0 0 0px rgba(76, 201, 240, 0)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(76, 201, 240, 0.6)); }
+    }
+
+    /* Speech bubble text lines type in */
+    .speech-line-1 {
+      animation: fadeUp 0.8s ease-out both, typeIn 0.6s ease-out 1.2s both;
+    }
+    .speech-line-2 {
+      animation: fadeUp 0.8s ease-out both, typeIn 0.6s ease-out 1.6s both;
+    }
+
+    @keyframes typeIn {
+      from { clip-path: inset(0 100% 0 0); opacity: 0.3; }
+      to { clip-path: inset(0 0% 0 0); opacity: 1; }
+    }
+
+    /* Ears wiggle subtly */
+    .ear-left {
+      animation: earWiggleL 5s ease-in-out 2s infinite;
+      transform-origin: right center;
+    }
+    .ear-right {
+      animation: earWiggleR 5s ease-in-out 2.5s infinite;
+      transform-origin: left center;
+    }
+
+    @keyframes earWiggleL {
+      0%, 85%, 100% { transform: rotate(0deg); }
+      90% { transform: rotate(-3deg); }
+      95% { transform: rotate(1deg); }
+    }
+    @keyframes earWiggleR {
+      0%, 85%, 100% { transform: rotate(0deg); }
+      90% { transform: rotate(3deg); }
+      95% { transform: rotate(-1deg); }
+    }
+
+    /* Smile widens on hover */
+    .smile {
+      transition: transform 0.3s ease;
+      transform-origin: center;
+    }
+    .formvo-logo:hover .smile {
+      transform: scaleX(1.15) scaleY(1.1);
+    }
+    .formvo-logo:hover .eye-left,
+    .formvo-logo:hover .eye-right {
+      animation: none;
+      transform: scaleY(0.7);
+      transition: transform 0.2s ease;
     }
 
     .brand {
@@ -216,111 +296,12 @@
       50% { opacity: 0.3; }
     }
 
-    /* CTA button */
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.85rem 2rem;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #4361ee 0%, #7209b7 50%, #f72585 100%);
-      color: white;
-      font-size: 1rem;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      margin-bottom: 2rem;
-      animation: fadeUp 1s 0.5s ease-out both;
-    }
-
-    .cta-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(67, 97, 238, 0.3);
-    }
-
-    .cta-btn svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .features {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-      animation: fadeUp 1s 0.6s ease-out both;
-    }
-
-    .divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.3), transparent);
-      margin: 0 auto 2rem;
-      animation: fadeUp 1s 0.7s ease-out both;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gray-dim);
-      font-size: 0.85rem;
-    }
-
-    .feature svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-    }
-
-    .feature .icon-sapphire { color: var(--sapphire); }
-    .feature .icon-indigo { color: var(--indigo); }
-    .feature .icon-pink { color: var(--pink); }
-
-    /* Trust row */
-    .trust-row {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      animation: fadeUp 1s 0.75s ease-out both;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--gray);
-      font-size: 0.75rem;
-      letter-spacing: 0.02em;
-      padding: 0.4rem 0.9rem;
-      border-radius: 100px;
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      background: rgba(148, 163, 184, 0.04);
-    }
-
-    .trust-item svg {
-      width: 13px;
-      height: 13px;
-      color: var(--aqua);
-      flex-shrink: 0;
-      opacity: 0.7;
-    }
-
     footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1.5rem;
+      width: 100%;
+      padding: 2rem 1.5rem;
       text-align: center;
       z-index: 1;
+      margin-top: 0;
     }
 
     footer a {
@@ -336,10 +317,8 @@
     @media (max-width: 480px) {
       .brand { font-size: 2.5rem; }
       .tagline { font-size: 1.05rem; }
-      .features { flex-direction: column; align-items: center; gap: 1rem; }
-      .trust-row { flex-direction: column; gap: 0.75rem; }
       .formvo-logo { width: 90px; height: 90px; }
-    }
+}
   </style>
 </head>
 <body>
@@ -348,36 +327,43 @@
 
   <div class="container">
     <div class="logo-container">
-      <!-- Formvo logo: speech bubble + form/checklist mark -->
-      <svg class="formvo-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Formvo chatbot logo with brand gradient -->
+      <svg class="formvo-logo" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="bubbleGrad" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+          <linearGradient id="brandGrad" x1="0" y1="0" x2="1200" y2="1200" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stop-color="#4361ee"/>
-            <stop offset="50%" stop-color="#7209b7"/>
+            <stop offset="45%" stop-color="#7209b7"/>
             <stop offset="100%" stop-color="#f72585"/>
           </linearGradient>
-          <radialGradient id="innerGlow" cx="60" cy="55" r="45" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="rgba(67,97,238,0.15)"/>
-            <stop offset="100%" stop-color="rgba(67,97,238,0)"/>
-          </radialGradient>
+          <linearGradient id="eyeGrad" x1="400" y1="600" x2="800" y2="700" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#4cc9f0"/>
+            <stop offset="100%" stop-color="#4361ee"/>
+          </linearGradient>
         </defs>
-        <!-- Speech bubble body -->
-        <path d="M15 20C15 12.268 21.268 6 29 6h62c7.732 0 14 6.268 14 14v50c0 7.732-6.268 14-14 14H45L25 100V84h-4C14.268 84 8 77.732 8 70V26c0-3.314 2.686-6 6-6h1z"
-              fill="url(#bubbleGrad)" opacity="0.95"/>
-        <path d="M15 20C15 12.268 21.268 6 29 6h62c7.732 0 14 6.268 14 14v50c0 7.732-6.268 14-14 14H45L25 100V84h-4C14.268 84 8 77.732 8 70V26c0-3.314 2.686-6 6-6h1z"
-              fill="url(#innerGlow)"/>
-        <!-- Checkboxes + lines (form mark) -->
-        <!-- Row 1 -->
-        <rect x="30" y="26" width="12" height="12" rx="3" fill="white" opacity="0.9"/>
-        <path d="M33 32.5l3 3 5-6" stroke="#4361ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <rect x="50" y="29" width="38" height="6" rx="3" fill="white" opacity="0.5"/>
-        <!-- Row 2 -->
-        <rect x="30" y="46" width="12" height="12" rx="3" fill="white" opacity="0.9"/>
-        <path d="M33 52.5l3 3 5-6" stroke="#7209b7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <rect x="50" y="49" width="30" height="6" rx="3" fill="white" opacity="0.5"/>
-        <!-- Row 3 -->
-        <rect x="30" y="66" width="12" height="12" rx="3" fill="white" opacity="0.7"/>
-        <rect x="50" y="69" width="24" height="6" rx="3" fill="white" opacity="0.35"/>
+        <!-- Antenna -->
+        <path d="m605.53 330.19c-10.359 0-18.75-8.4375-18.75-18.75v-95.578c0-10.359 8.3906-18.75 18.75-18.75 10.312 0 18.75 8.3906 18.75 18.75v95.578c0 4.9688-2.0156 9.7031-5.5312 13.219s-8.25 5.5312-13.219 5.5312z" fill="url(#brandGrad)"/>
+        <!-- Head/body outline -->
+        <path d="m807.71 862.5h-404.44c-61.922-0.09375-112.12-50.297-112.27-112.22v-167.26c0.09375-61.922 50.344-112.08 112.27-112.12h404.44c61.922 0.046874 112.17 50.203 112.27 112.12v167.16c-0.09375 61.969-50.297 112.17-112.27 112.31zm-404.44-353.9c-41.25 0-74.719 33.422-74.766 74.625v167.16c0.09375 41.25 33.516 74.578 74.766 74.625h404.44c41.25-0.046874 74.719-33.469 74.766-74.719v-167.26c-0.09375-41.203-33.516-74.625-74.766-74.625z" fill="url(#brandGrad)"/>
+        <!-- Left ear -->
+        <path class="ear-left" d="m217.69 788.81h-65.062c-65.344 0-99.469-62.531-99.469-124.22 0-31.312 8.3438-60.75 23.438-82.875 18.047-26.438 45.047-41.016 76.078-41.016h65.016c10.359 0 18.75 8.3906 18.75 18.75 0 10.359-8.3906 18.75-18.75 18.75h-65.062c-18.75 0-33.938 8.2969-45.094 24.656-10.734 15.75-16.875 38.203-16.875 61.688 0 41.766 19.406 86.719 61.969 86.719l65.062 0.046876c10.359 0 18.75 8.3906 18.75 18.75 0 10.312-8.3906 18.75-18.75 18.75z" fill="url(#brandGrad)"/>
+        <!-- Right ear -->
+        <path class="ear-right" d="m1058.3 788.81h-65.062c-10.359 0-18.75-8.4375-18.75-18.75 0-10.359 8.3906-18.75 18.75-18.75h65.062c42.609 0 61.969-45 61.969-86.719 0-23.438-6.1875-45.984-16.875-61.688-11.156-16.406-26.344-24.656-45.094-24.656l-65.062-0.046875c-10.359 0-18.75-8.3906-18.75-18.75s8.3906-18.75 18.75-18.75h65.062c31.031 0 58.031 14.531 76.078 41.016 15.094 22.125 23.438 51.562 23.438 82.875-0.046875 61.688-34.219 124.22-99.516 124.22z" fill="url(#brandGrad)"/>
+        <!-- Antenna ball -->
+        <path class="antenna-ball" d="m605.53 234.61c-33.562 0-63.797-20.203-76.641-51.234-12.797-30.984-5.7188-66.656 18.047-90.328 23.719-23.719 59.391-30.797 90.375-17.953s51.141 43.078 51.141 76.641c-0.09375 45.75-37.172 82.828-82.922 82.875zm0-128.34c-18.375 0-34.922 11.062-41.953 28.031s-3.1406 36.516 9.8438 49.5c12.984 12.984 32.484 16.875 49.453 9.8438 16.969-6.9844 28.078-23.531 28.078-41.906-0.046875-25.078-20.344-45.422-45.422-45.469z" fill="url(#brandGrad)"/>
+        <!-- Speech bubble -->
+        <path d="m390.47 437.72c-3.0469-0.046875-6.0938-0.65625-9-1.7344l-0.5625-0.1875-60.094-24.328h-99.094c-47.578-0.046875-93.188-18.984-126.84-52.594-33.656-33.656-52.641-79.266-52.688-126.84v-7.0312c0.09375-47.578 19.031-93.188 52.688-126.79 33.656-33.609 79.312-52.5 126.84-52.547h67.969c47.578 0.046875 93.188 18.938 126.84 52.594 33.609 33.609 52.547 79.172 52.641 126.74v7.0312c-0.046875 49.688-20.719 97.078-57.141 130.87l-0.375 51.938c0.46875 7.3125-2.7656 14.344-8.5781 18.75-3.6562 2.6719-8.0625 4.125-12.609 4.125zm-54.938-60.75 38.766 15.656 0.28125-36.375 0.046875 0.046875c-0.46875-5.6719 1.5938-11.25 5.6719-15.234h-0.046875c0.375-0.32812 0.70312-0.65625 1.125-0.98438 31.828-26.859 50.25-66.375 50.297-108.05v-7.0312c-0.14062-78.375-63.703-141.84-142.08-141.84h-67.969c-78.328 0.046876-141.79 63.516-141.94 141.84v7.0312c0.14062 78.375 63.703 141.84 142.03 141.84h100.69c4.5938-0.1875 9.1406 0.89062 13.172 3.0938z" fill="url(#brandGrad)"/>
+        <!-- Body shell -->
+        <path d="m816.37 985.6h-421.87c-51.797-0.1875-101.48-20.906-138.1-57.562-36.656-36.656-57.328-86.344-57.469-138.19v-229.69c0.046875-66.75 25.125-131.06 70.312-180.19 3.375-3.7031 8.0156-5.8594 12.984-6.0938 4.9688-0.23438 9.8438 1.5469 13.5 4.875 7.6406 6.9844 8.2031 18.844 1.1719 26.531-38.812 42.188-60.422 97.5-60.469 154.87v229.69c0.23438 87.281 70.875 157.97 158.16 158.34h421.87c87.234-0.42188 157.78-71.109 158.06-158.34v-229.69c-0.09375-61.031-24.375-119.48-67.547-162.61-43.172-43.125-101.67-67.406-162.71-67.406l-277.6-0.046875c-12.188 0.046875-24.375 1.0312-36.375 2.9062-5.0156 0.9375-10.125-0.1875-14.25-3.1406-4.125-2.9062-6.8906-7.3594-7.6875-12.375-0.79688-4.9688 0.46875-10.078 3.5156-14.109 3-4.0781 7.5469-6.7031 12.562-7.4062 13.969-2.2031 28.078-3.3281 42.188-3.375h277.64c147.66 0 267.74 120 267.74 267.56v229.69c-0.14062 51.844-20.766 101.58-57.422 138.28-36.656 36.656-86.344 57.375-138.24 57.562z" fill="url(#brandGrad)"/>
+        <!-- Speech bubble text lines (type-in animation) -->
+        <path class="speech-line-1" d="m337.64 205.4h-140.26c-10.359 0-18.75-8.3906-18.75-18.75 0-10.312 8.3906-18.75 18.75-18.75h140.26v0.046875c10.359 0 18.75 8.3906 18.75 18.75 0 10.312-8.3906 18.703-18.75 18.703z" fill="rgba(255,255,255,0.65)"/>
+        <path class="speech-line-2" d="m337.64 281.53h-187.82c-10.359 0-18.75-8.3906-18.75-18.75 0-10.312 8.3906-18.75 18.75-18.75h187.87-0.046875c10.359 0 18.75 8.4375 18.75 18.75 0 10.359-8.3906 18.75-18.75 18.75z" fill="rgba(255,255,255,0.85)"/>
+        <!-- Smile -->
+        <path class="smile" d="m604.13 782.06c-23.109 0-45.234-9.4219-61.219-26.156v0.046875c-7.2188-7.4531-7.0312-19.312 0.42188-26.531 7.4062-7.2188 19.312-7.0312 26.484 0.42188 8.9531 9.375 21.328 14.719 34.312 14.719s25.359-5.3438 34.312-14.719c7.1719-7.4531 19.078-7.6406 26.484-0.42188 7.4531 7.2188 7.6406 19.078 0.42188 26.531-15.984 16.688-38.109 26.109-61.219 26.109z" fill="url(#brandGrad)"/>
+        <!-- Eyes — aqua accent -->
+        <path class="eye-right" d="m740.29 697.13c-27.938-0.046875-53.109-16.875-63.797-42.703-10.641-25.828-4.7344-55.547 15.047-75.281s49.5-25.594 75.328-14.906c25.781 10.734 42.562 35.953 42.562 63.891-0.14062 38.109-31.031 68.953-69.141 69zm0-100.64v-0.046875c-12.75 0.046875-24.234 7.7344-29.109 19.5-4.875 11.812-2.2031 25.359 6.7969 34.406 9.0469 9 22.594 11.719 34.406 6.8906 11.766-4.875 19.5-16.359 19.547-29.109 0-8.3906-3.3281-16.453-9.2812-22.359-5.9062-5.9531-13.969-9.2812-22.359-9.3281z" fill="url(#eyeGrad)"/>
+        <path class="eye-left" d="m463.69 697.13c-27.891-0.046875-53.062-16.922-63.75-42.75-10.641-25.828-4.6875-55.5 15.094-75.234s49.5-25.594 75.281-14.906c25.828 10.734 42.609 35.953 42.562 63.891-0.09375 38.109-31.031 69-69.188 69zm0-100.64v-0.046875c-12.75 0.046875-24.188 7.7812-29.062 19.547-4.875 11.812-2.1562 25.359 6.8438 34.359 9.0469 9.0469 22.594 11.719 34.359 6.8906 11.812-4.875 19.5-16.359 19.547-29.109 0-8.3906-3.3281-16.453-9.2812-22.406-5.9062-5.9531-13.969-9.2812-22.406-9.2812z" fill="url(#eyeGrad)"/>
+        <!-- Base/stand -->
+        <path d="m1050 1154.3h-900c-10.359 0-18.75-8.3906-18.75-18.75 0.046875-49.734 19.828-97.359 54.984-132.52s82.781-54.938 132.52-54.984h562.5c49.734 0.046875 97.359 19.828 132.52 54.984s54.938 82.781 54.984 132.52c0 4.9688-1.9688 9.75-5.4844 13.266s-8.2969 5.4844-13.266 5.4844zm-880.08-37.5h860.16c-9.5156-74.953-73.266-131.16-148.82-131.26h-562.5c-75.562 0.09375-139.31 56.297-148.82 131.26z" fill="url(#brandGrad)"/>
       </svg>
     </div>
 
@@ -389,61 +375,12 @@
       Coming Soon
     </div>
 
-    <button class="cta-btn" onclick="openFormvoWidget()">
-      Join the Waitlist
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </button>
 
-    <div class="features">
-      <div class="feature">
-        <svg class="icon-sapphire" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
-        Conversational AI
-      </div>
-      <div class="feature">
-        <svg class="icon-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        60-Second Builder
-      </div>
-      <div class="feature">
-        <svg class="icon-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
-        Structured Data
-      </div>
-    </div>
-
-    <div class="divider"></div>
-    <div class="trust-row">
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Enterprise-Grade Security
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        No Credit Card Required
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        Built with AI
-      </div>
-    </div>
   </div>
 
   <footer>
-    <a href="/privacy">Privacy Policy</a>
-    <a href="/terms">Terms of Service</a>
-    <p style="color: var(--gray-dim); font-size: 0.7rem; margin-top: 0.75rem; opacity: 0.7;">&copy; 2026 MBJR Creative, LLC</p>
+    <p style="color: var(--gray-dim); font-size: 0.7rem; opacity: 0.7;">&copy; 2026 Formvo, a DBA of MBJR Creative, LLC</p>
   </footer>
 
-  <!-- Formvo Widget — eating our own dogfood -->
-  <script src="https://formvo.app/widget.js" data-form="7b1d1963-e5b7-4180-9fad-151e860e7e69" data-position="bottom-right" async></script>
-  <script>
-    function openFormvoWidget() {
-      const trigger = document.querySelector('.formvo-trigger');
-      if (trigger) {
-        trigger.click();
-      } else {
-        // Widget hasn't loaded yet — fallback: open in new tab
-        window.open('https://formvo.app', '_blank');
-      }
-    }
-  </script>
 </body>
 </html>
